@@ -1,4 +1,4 @@
-FROM rust:1.31
+FROM rust:buster
 
 WORKDIR /usr/src/discord-bot
 COPY . .
