@@ -23,6 +23,14 @@ impl EventHandler for Handler {
                 println!("Error sending message: {:?}", why);
             }
         }
+
+        if msg.content.eq_ignore_ascii_case("mordhau") {
+
+            if let Err(why) = msg.channel_id.say(&ctx.http, "Bruh, Mordhau is DOA!") {
+                println!("Error sending message: {:?}", why);
+            }
+
+        }
     }
 
     // Set a handler to be called on the `ready` event. This is called when a
