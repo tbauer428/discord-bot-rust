@@ -14,6 +14,8 @@ impl EventHandler for Handler {
     // Event handlers are dispatched through a threadpool, and so multiple
     // events can be dispatched simultaneously.
     fn message(&self, ctx: Context, msg: Message) {
+        if msg.author.bot { return }
+
         if msg.content == "!ping" {
             // Sending a message can fail, due to a network error, an
             // authentication error, or lack of permissions to post in the
@@ -24,9 +26,15 @@ impl EventHandler for Handler {
             }
         }
 
-        if msg.content.eq_ignore_ascii_case("mordhau") {
+        if msg.content.to_lowercase().find("mordhau" ).is_some() {
 
-            if let Err(why) = msg.channel_id.say(&ctx.http, "Bruh, Mordhau is DOA!") {
+            let string2 = ", didn't you hear? Mordhau is DOA!";
+            let string1 = msg.author.name;
+
+            let message: String = string1 + string2;
+
+            if let Err(why) = msg.channel_id.say(&ctx.http,
+                                                 message) {
                 println!("Error sending message: {:?}", why);
             }
 

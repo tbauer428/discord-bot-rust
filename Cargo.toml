@@ -8,3 +8,5 @@ edition = "2018"
 
 [dependencies]
 serenity = "0.8"
+regex = "1"
+diesel = { version = "1.0.0", features = ["postgres"] }
